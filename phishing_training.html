@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Awareness Training</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --header-color: white;
+            --text-color: #333;
+            --section-bg: rgba(255,255,255,0.95);
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --nav-btn-bg: rgba(255,255,255,0.2);
+            --nav-btn-hover-bg: rgba(255,255,255,0.3);
+            --section-title: #4a5568;
+            --subsection-title: #2d3748;
+            --example-bg: #f7fafc;
+            --example-border: #e53e3e;
+            --good-example-border: #38a169;
+            --warning-bg: #fff5f5;
+            --warning-border: #feb2b2;
+            --tip-bg: #f0fff4;
+            --tip-border: #9ae6b4;
+            --quiz-bg: #edf2f7;
+            --quiz-option-bg: white;
+            --quiz-option-border: #cbd5e0;
+            --quiz-option-hover: #667eea;
+            --quiz-correct-bg: #c6f6d5;
+            --quiz-correct-border: #38a169;
+            --quiz-incorrect-bg: #fed7d7;
+            --quiz-incorrect-border: #e53e3e;
+            --phishing-example-bg: #fffbeb;
+            --phishing-example-border: #f6e05e;
+            --progress-bg: rgba(255,255,255,0.3);
+            --progress-fill: linear-gradient(90deg, #48bb78, #38a169);
+            --interactive-bg: #e6fffa;
+            --interactive-border: #4fd1c7;
+            --btn-bg: #667eea;
+            --btn-hover-bg: #5a6fd8;
+            --btn-color: white;
+            --checklist-bg: #f7fafc;
+            --checklist-item-bg: white;
+            --checklist-item-border: #cbd5e0;
+            --checklist-item-hover: #f0f0f0;
+            --checkbox-bg: white;
+            --checkbox-checked-bg: #48bb78;
+            --checkbox-checked-border: #48bb78;
+            --stat-card-bg: white;
+            --stat-number: #667eea;
+            --stat-label: #4a5568;
+        }
+        body[data-theme='dark'] {
+            --bg-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
+            --header-color: #e2e8f0;
+            --text-color: #e2e8f0;
+            --section-bg: rgba(34,34,40,0.98);
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --nav-btn-bg: rgba(255,255,255,0.08);
+            --nav-btn-hover-bg: rgba(255,255,255,0.15);
+            --section-title: #a0aec0;
+            --subsection-title: #cbd5e1;
+            --example-bg: #2d3748;
+            --example-border: #e53e3e;
+            --good-example-border: #38a169;
+            --warning-bg: #4a5568;
+            --warning-border: #feb2b2;
+            --tip-bg: #22543d;
+            --tip-border: #9ae6b4;
+            --quiz-bg: #2d3748;
+            --quiz-option-bg: #232526;
+            --quiz-option-border: #4a5568;
+            --quiz-option-hover: #a3bffa;
+            --quiz-correct-bg: #22543d;
+            --quiz-correct-border: #38a169;
+            --quiz-incorrect-bg: #742a2a;
+            --quiz-incorrect-border: #e53e3e;
+            --phishing-example-bg: #353535;
+            --phishing-example-border: #f6e05e;
+            --progress-bg: rgba(255,255,255,0.08);
+            --progress-fill: linear-gradient(90deg, #38a169, #22543d);
+            --interactive-bg: #234e52;
+            --interactive-border: #4fd1c7;
+            --btn-bg: #4a5568;
+            --btn-hover-bg: #2d3748;
+            --btn-color: #e2e8f0;
+            --checklist-bg: #232526;
+            --checklist-item-bg: #2d3748;
+            --checklist-item-border: #4a5568;
+            --checklist-item-hover: #353535;
+            --checkbox-bg: #2d3748;
+            --checkbox-checked-bg: #38a169;
+            --checkbox-checked-border: #38a169;
+            --stat-card-bg: #232526;
+            --stat-number: #a3bffa;
+            --stat-label: #cbd5e1;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: var(--header-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: var(--nav-btn-bg);
+            border: none;
+            color: var(--header-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--nav-btn-hover-bg);
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            background: var(--section-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: var(--section-title);
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--btn-bg);
+            padding-bottom: 10px;
+        }
+        
+        .subsection {
+            margin-bottom: 25px;
+        }
+        
+        .subsection h3 {
+            color: var(--subsection-title);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .example-box {
+            background: var(--example-bg);
+            border-left: 4px solid var(--example-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .good-example {
+            border-left-color: var(--good-example-border);
+        }
+        
+        .warning-box {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tip-box {
+            background: var(--tip-bg);
+            border: 1px solid var(--tip-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .quiz-container {
+            background: var(--quiz-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--subsection-title);
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-option {
+            background: var(--quiz-option-bg);
+            border: 2px solid var(--quiz-option-border);
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--quiz-option-hover);
+            transform: translateX(5px);
+        }
+        
+        .quiz-option.correct {
+            background: var(--quiz-correct-bg);
+            border-color: var(--quiz-correct-border);
+        }
+        
+        .quiz-option.incorrect {
+            background: var(--quiz-incorrect-bg);
+            border-color: var(--quiz-incorrect-border);
+        }
+        
+        .quiz-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .quiz-result.show {
+            opacity: 1;
+            transform: scale(1.05);
+            animation: bounceIn 0.4s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.95); }
+            60% { transform: scale(1.08); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .phishing-example {
+            background: var(--phishing-example-bg);
+            border: 1px solid var(--phishing-example-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--progress-bg);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--progress-fill);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .interactive-element {
+            background: var(--interactive-bg);
+            border: 2px dashed var(--interactive-border);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .btn {
+            background: var(--btn-bg);
+            color: var(--btn-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background: var(--btn-hover-bg);
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: scale(0.96);
+            transition: transform 0.1s;
+        }
+        
+        .checklist {
+            background: var(--checklist-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: var(--checklist-item-bg);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: var(--checklist-item-hover);
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--checklist-item-border);
+            border-radius: 3px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--checkbox-bg);
+        }
+        
+        .checkbox.checked {
+            background: var(--checkbox-checked-bg);
+            border-color: var(--checkbox-checked-border);
+            color: var(--btn-color);
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: var(--stat-card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--stat-number);
+        }
+        
+        .stat-label {
+            color: var(--stat-label);
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 200px;
+                margin: 5px 0;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            background: var(--btn-bg);
+            color: var(--btn-color);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 18px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+            z-index: 2000;
+            user-select: none;
+            pointer-events: auto;
+        }
+        /* Animated Fact Box */
+        .fact-box {
+            background: var(--tip-bg);
+            border-left: 6px solid var(--btn-bg);
+            border-radius: 10px;
+            padding: 18px 24px;
+            margin: 24px 0;
+            font-size: 1.1em;
+            color: var(--text-color);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+        }
+        .fact-icon {
+            font-size: 2em;
+            margin-right: 16px;
+            animation: iconBounce 1.2s infinite alternate;
+        }
+        @keyframes iconBounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+        /* Animated Progress Bar */
+        .progress-fill {
+            transition: width 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        /* Animated Quiz Feedback */
+        .quiz-result .feedback-anim {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            animation: popIn 0.5s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        /* Animated Checklist */
+        .checkbox.checked {
+            animation: checkAppear 0.4s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes checkAppear {
+            0% { background: var(--checkbox-bg); color: transparent; }
+            60% { background: var(--checkbox-checked-bg); color: var(--btn-color); transform: scale(1.2); }
+            100% { background: var(--checkbox-checked-bg); color: var(--btn-color); transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="position:relative;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">🌙 Dark Mode</button>
+        <div class="header">
+            <h1>🛡️ Phishing Awareness Training</h1>
+            <p>Learn to identify and protect yourself from phishing attacks</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection('intro')">Introduction</button>
+            <button class="nav-btn" onclick="showSection('recognition')">Recognition</button>
+            <button class="nav-btn" onclick="showSection('social')">Social Engineering</button>
+            <button class="nav-btn" onclick="showSection('practices')">Best Practices</button>
+            <button class="nav-btn" onclick="showSection('examples')">Real Examples</button>
+            <button class="nav-btn" onclick="showSection('quiz')">Interactive Quiz</button>
+        </div>
+        
+        <div id="intro" class="content-section active">
+            <h2 class="section-title">🎯 What is Phishing?</h2>
+            
+            <div class="subsection">
+                <h3><span class="icon">📧</span>Definition</h3>
+                <p>Phishing is a cybercrime where attackers impersonate legitimate organizations to steal sensitive information like passwords, credit card numbers, or personal data. They use deceptive emails, websites, or messages to trick victims into revealing confidential information.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">3.4B</div>
+                    <div class="stat-label">Phishing emails sent daily</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Of data breaches start with phishing</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$12B</div>
+                    <div class="stat-label">Annual losses from phishing</div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🎯</span>Common Targets</h3>
+                <p>Phishing attacks commonly target:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Login credentials for banking, email, or social media</li>
+                    <li>Credit card and payment information</li>
+                    <li>Personal identification information</li>
+                    <li>Corporate data and intellectual property</li>
+                    <li>Access to internal systems and networks</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <strong>⚠️ Key Fact:</strong> Phishing attacks are becoming increasingly sophisticated and harder to detect. Even tech-savvy individuals can fall victim if they're not careful.
+            </div>
+        </div>
+        
+        <div id="recognition" class="content-section">
+            <h2 class="section-title">🔍 How to Recognize Phishing</h2>
+            
+            <div class="subsection">
+                <h3><span class="icon">📧</span>Email Red Flags</h3>
+                
+                <div class="checklist">
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Urgent language: "Act now!" or "Your account will be closed!"</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Suspicious sender addresses that don't match the organization</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Generic greetings like "Dear Customer" instead of your name</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Poor grammar, spelling mistakes, or awkward phrasing</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Requests for sensitive information via email</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Suspicious links or attachments</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🌐</span>Website Warning Signs</h3>
+                
+                <div class="example-box">
+                    <strong>Suspicious URL Examples:</strong><br>
+                    ❌ paypaI.com (using capital i instead of l)<br>
+                    ❌ amazon-security.com (fake subdomain)<br>
+                    ❌ http://bank-update.net (no HTTPS)<br>
+                    ✅ https://www.paypal.com (legitimate)
+                </div>
+                
+                <div class="tip-box">
+                    <strong>💡 Pro Tip:</strong> Always check the URL carefully. Look for misspellings, extra characters, or suspicious domains. Legitimate sites use HTTPS (look for the lock icon).
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">📱</span>Mobile Phishing</h3>
+                <p>Mobile phishing (smishing) uses SMS or messaging apps:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Fake delivery notifications</li>
+                    <li>Prize or lottery scams</li>
+                    <li>Fake security alerts</li>
+                    <li>Malicious app download links</li>
+                </ul>
+            </div>
+            
+            <div class="interactive-element">
+                <h4>🔍 URL Inspection Tool</h4>
+                <p>Practice checking URLs for signs of phishing:</p>
+                <input type="text" id="urlInput" placeholder="Enter a URL to check..." style="width: 70%; padding: 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <button class="btn" onclick="checkURL()">Analyze URL</button>
+                <div id="urlResult" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+        
+        <div id="social" class="content-section">
+            <h2 class="section-title">🎭 Social Engineering Tactics</h2>
+            
+            <div class="subsection">
+                <h3><span class="icon">⚡</span>Urgency and Fear</h3>
+                <p>Attackers create artificial urgency to bypass your logical thinking:</p>
+                <div class="example-box">
+                    <strong>Example:</strong> "Your account has been compromised! Click here within 24 hours to secure it or lose access permanently!"
+                </div>
+                <div class="tip-box">
+                    <strong>Solution:</strong> Take time to verify. Contact the organization directly through official channels.
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🎯</span>Authority and Trust</h3>
+                <p>Phishers impersonate trusted figures or organizations:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Government agencies (IRS, FBI)</li>
+                    <li>Banks and financial institutions</li>
+                    <li>Popular online services (Google, Microsoft)</li>
+                    <li>Company executives or IT departments</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🎁</span>Greed and Curiosity</h3>
+                <p>Attackers exploit human psychology with:</p>
+                <div class="example-box">
+                    <strong>Examples:</strong><br>
+                    • "You've won $10,000! Click to claim your prize!"<br>
+                    • "See who viewed your profile"<br>
+                    • "Free premium membership - limited time!"<br>
+                    • "Someone mentioned you in a photo"
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🎪</span>Spear Phishing</h3>
+                <p>Targeted attacks using personal information:</p>
+                <div class="warning-box">
+                    <strong>How it works:</strong> Attackers research their targets on social media, company websites, and public records to create highly personalized and convincing messages.
+                </div>
+            </div>
+            
+            <div class="interactive-element">
+                <h4>🧠 Psychology Test</h4>
+                <p>Which psychological trigger is being used?</p>
+                <div id="psychologyTest">
+                    <div class="quiz-question">"Your CEO needs you to purchase gift cards immediately for a client meeting. This is confidential - don't tell anyone."</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectPsychology(this, false)">Greed</div>
+                        <div class="quiz-option" onclick="selectPsychology(this, true)">Authority + Urgency</div>
+                        <div class="quiz-option" onclick="selectPsychology(this, false)">Curiosity</div>
+                    </div>
+                    <div id="psychologyResult"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="practices" class="content-section">
+            <h2 class="section-title">🛡️ Best Practices & Protection</h2>
+            
+            <div class="subsection">
+                <h3><span class="icon">✅</span>Email Safety</h3>
+                <div class="checklist">
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Always verify sender identity through alternative means</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Never click links in suspicious emails</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Type URLs directly into browser instead of clicking</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Use email filters and spam detection</span>
+                    </div>
+                    <div class="checklist-item" onclick="toggleCheck(this)">
+                        <div class="checkbox"></div>
+                        <span>Enable two-factor authentication (2FA)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🔐</span>Password Security</h3>
+                <div class="good-example example-box">
+                    <strong>Strong Password Practices:</strong><br>
+                    • Use unique passwords for each account<br>
+                    • Enable two-factor authentication<br>
+                    • Use a password manager<br>
+                    • Regularly update passwords<br>
+                    • Never share passwords via email or text
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🌐</span>Safe Browsing</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Look for HTTPS and the padlock icon</li>
+                    <li>Check website certificates</li>
+                    <li>Keep browsers and plugins updated</li>
+                    <li>Use reputable antivirus software</li>
+                    <li>Be cautious with downloads and attachments</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">📱</span>Mobile Security</h3>
+                <div class="tip-box">
+                    <strong>Mobile Best Practices:</strong><br>
+                    • Download apps only from official stores<br>
+                    • Be wary of SMS links and attachments<br>
+                    • Use mobile security software<br>
+                    • Keep your device OS updated<br>
+                    • Verify app permissions
+                </div>
+            </div>
+            
+            <div class="interactive-element">
+                <h4>🔧 Security Checkup</h4>
+                <p>Complete this security assessment:</p>
+                <button class="btn" onclick="startSecurityCheck()">Start Security Assessment</button>
+                <div id="securityCheck" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+        
+        <div id="examples" class="content-section">
+            <h2 class="section-title">📚 Real-World Examples</h2>
+            
+            <div class="subsection">
+                <h3><span class="icon">📧</span>Phishing Email Examples</h3>
+                
+                <div class="phishing-example">
+                    <strong>Example 1: Fake Bank Alert</strong><br><br>
+                    From: security@bankofamerica-alert.com<br>
+                    Subject: URGENT: Suspicious Activity Detected<br><br>
+                    Dear Customer,<br><br>
+                    We have detected unusual activity on your account. Your account will be suspended in 24 hours unless you verify your identity immediately.<br><br>
+                    Click here to verify: http://boa-security.net/verify<br><br>
+                    Bank of America Security Team
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Red Flags:</strong><br>
+                    • Suspicious sender domain (not bankofamerica.com)<br>
+                    • Generic greeting<br>
+                    • Urgent language<br>
+                    • Suspicious URL<br>
+                    • No HTTPS
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <div class="phishing-example">
+                    <strong>Example 2: Fake Tech Support</strong><br><br>
+                    From: support@microsoft-security.org<br>
+                    Subject: Windows Security Alert - Action Required<br><br>
+                    Your computer has been infected with malware. Download our security tool immediately to prevent data loss.<br><br>
+                    Download now: http://windows-fix.co/download<br><br>
+                    Microsoft Security Team
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Red Flags:</strong><br>
+                    • Fake Microsoft domain<br>
+                    • Fear-based messaging<br>
+                    • Asks to download software<br>
+                    • Unofficial download link
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">📱</span>SMS Phishing (Smishing)</h3>
+                
+                <div class="phishing-example">
+                    <strong>Example: Fake Delivery Notification</strong><br><br>
+                    "Your package delivery failed. Reschedule: http://fedex-delivery.net/track?id=123456"<br><br>
+                    <strong>Or:</strong><br><br>
+                    "WINNER! You've won $1000 Amazon gift card! Claim now: http://amazon-prize.co/claim"
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3><span class="icon">🎯</span>Spear Phishing Case Study</h3>
+                
+                <div class="example-box">
+                    <strong>The Target:</strong> A finance manager at a tech company<br>
+                    <strong>The Attack:</strong> Email appears to be from the CEO, requesting urgent wire transfer<br>
+                    <strong>The Hook:</strong> Uses real employee names and internal project references<br>
+                    <strong>The Result:</strong> $500,000 transferred to attacker's account
+                </div>
+                
+                <div class="tip-box">
+                    <strong>Prevention:</strong> Always verify financial requests through multiple channels, regardless of who appears to be asking.
+                </div>
+            </div>
+            
+            <div class="interactive-element">
+                <h4>🔍 Spot the Phish</h4>
+                <p>Can you identify what's wrong with this email?</p>
+                <button class="btn" onclick="showPhishingTest()">Start Email Analysis</button>
+                <div id="phishingTest" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+        
+        <div id="quiz" class="content-section">
+            <h2 class="section-title">🎯 Interactive Quiz</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">Question 1: What should you do if you receive an urgent email asking for your password?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Never provide your password via email. Legitimate organizations will never ask for it.', 0)">Provide the password immediately</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true, 'Never provide your password via email. Legitimate organizations will never ask for it.', 0)">Never provide passwords via email</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Never provide your password via email. Legitimate organizations will never ask for it.', 0)">Only provide if it's from your bank</div>
+                </div>
+                <div id="result1" class="quiz-result"></div>
+                <button class="btn" type="button" onclick="clearAnswer(0)">Clear Answer</button>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">Question 2: Which URL is most likely legitimate?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'The URL &quot;paypaI.com&quot; is a known phishing domain. Always check the domain carefully.', 1)">http://paypaI.com</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true, 'The URL &quot;https://www.paypal.com&quot; is a legitimate PayPal domain.', 1)">https://www.paypal.com</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'The URL &quot;https://paypal-security.co&quot; is a suspicious domain.', 1)">https://paypal-security.co</div>
+                </div>
+                <div id="result2" class="quiz-result"></div>
+                <button class="btn" type="button" onclick="clearAnswer(1)">Clear Answer</button>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">Question 3: What's the best way to verify a suspicious email from your bank?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Clicking the link in the email can lead to a phishing site. Always contact the bank directly.', 2)">Click the link in the email</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true, 'Contact the bank directly using official phone number or website. This is the safest way to verify.', 2)">Contact the bank directly using official phone number</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Replying to the email asking for confirmation is a common phishing tactic.', 2)">Reply to the email asking for confirmation</div>
+                </div>
+                <div id="result3" class="quiz-result"></div>
+                <button class="btn" type="button" onclick="clearAnswer(2)">Clear Answer</button>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">Question 4: Which is NOT a common phishing tactic?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Creating urgency is a primary tactic to get users to act quickly.', 3)">Creating urgency</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true, 'Sending emails during business hours is not a common phishing tactic. Legitimate organizations are open 24/7.', 3)">Sending emails during business hours</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Impersonating authority figures is a common tactic.', 3)">Impersonating authority figures</div>
+                </div>
+                <div id="result4" class="quiz-result"></div>
+                <button class="btn" type="button" onclick="clearAnswer(3)">Clear Answer</button>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question">Question 5: What should you do if you think you've fallen for a phishing attack?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Waiting and seeing what happens can lead to irreversible damage.', 4)">Wait and see what happens</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true, 'Immediately change passwords and report the incident to the organization and your IT department.', 4)">Immediately change passwords and report the incident</div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false, 'Deleting the email and forgetting about it is a common mistake.', 4)">Delete the email and forget about it</div>
+                </div>
+                <div id="result5" class="quiz-result"></div>
+                <button class="btn" type="button" onclick="clearAnswer(4)">Clear Answer</button>
+            </div>
+            <div class="interactive-element" id="quizResultsSection" style="display:none;">
+                <h4>📊 Quiz Results</h4>
+                <p>Score: <span id="finalScore">0</span>/5</p>
+                <button class="btn" onclick="resetQuiz()">Retake Quiz</button>
+                <div id="quizFeedback" style="margin-top: 15px;"></div>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <button class="btn" id="submitQuizBtn" style="display:none;" onclick="submitQuiz()">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer" style="width:100%;text-align:center;padding:18px 0 12px 0;margin-top:40px;font-size:1.1em;color:var(--section-title);background:transparent;letter-spacing:0.5px;">
+        <span style="vertical-align:middle;">Developed and designed by <strong>Srijan Samanta</strong></span>
+    </footer>
+    <script>
+        let currentSection = 'intro';
+        let score = 0;
+        let questionsAnswered = 0;
+        let userAnswers = [null, null, null, null, null];
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Update progress bar
+            updateProgress(sectionId);
+            
+            currentSection = sectionId;
+            // Save section progress
+            localStorage.setItem('phishing_currentSection', sectionId);
+        }
+        
+        function updateProgress(sectionId) {
+            const sections = ['intro', 'recognition', 'social', 'practices', 'examples', 'quiz'];
+            const currentIndex = sections.indexOf(sectionId);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function toggleCheck(element) {
+            const checkbox = element.querySelector('.checkbox');
+            checkbox.classList.toggle('checked');
+            if (checkbox.classList.contains('checked')) {
+                checkbox.innerHTML = '✓';
+            } else {
+                checkbox.innerHTML = '';
+            }
+            // Save checklist progress
+            saveChecklistProgress();
+        }
+        
+        function saveChecklistProgress() {
+            const checklists = document.querySelectorAll('.checklist');
+            let checklistStates = [];
+            checklists.forEach((list, idx) => {
+                let items = [];
+                list.querySelectorAll('.checklist-item').forEach(item => {
+                    items.push(item.querySelector('.checkbox').classList.contains('checked'));
+                });
+                checklistStates.push(items);
+            });
+            localStorage.setItem('phishing_checklists', JSON.stringify(checklistStates));
+        }
+        function loadChecklistProgress() {
+            const data = localStorage.getItem('phishing_checklists');
+            if (!data) return;
+            const checklistStates = JSON.parse(data);
+            const checklists = document.querySelectorAll('.checklist');
+            checklists.forEach((list, idx) => {
+                if (!checklistStates[idx]) return;
+                list.querySelectorAll('.checklist-item').forEach((item, i) => {
+                    const checked = checklistStates[idx][i];
+                    const checkbox = item.querySelector('.checkbox');
+                    if (checked) {
+                        checkbox.classList.add('checked');
+                        checkbox.innerHTML = '✓';
+                    } else {
+                        checkbox.classList.remove('checked');
+                        checkbox.innerHTML = '';
+                    }
+                });
+            });
+        }
+        
+        function checkURL() {
+            const url = document.getElementById('urlInput').value;
+            const resultDiv = document.getElementById('urlResult');
+            
+            if (!url) {
+                resultDiv.innerHTML = '<p style="color: #e53e3e;">Please enter a URL to check.</p>';
+                return;
+            }
+            
+            let warnings = [];
+            let isSecure = true;
+            
+            // Check for HTTPS
+            if (!url.startsWith('https://')) {
+                warnings.push('❌ Not using HTTPS - data may not be encrypted');
+                isSecure = false;
+            }
+            
+            // Check for suspicious patterns
+            if (url.includes('paypaI') || url.includes('arnazon') || url.includes('g00gle')) {
+                warnings.push('❌ Suspicious character substitution detected');
+                isSecure = false;
+            }
+            
+            // Check for suspicious domains
+            if (url.includes('-security.') || url.includes('-update.') || url.includes('-alert.')) {
+                warnings.push('❌ Suspicious subdomain pattern');
+                isSecure = false;
+            }
+            
+            // Check for URL shorteners
+            if (url.includes('bit.ly') || url.includes('tinyurl') || url.includes('t.co')) {
+                warnings.push('⚠️ URL shortener - destination is hidden');
+                isSecure = false;
+            }
+            
+            if (isSecure && warnings.length === 0) {
+                resultDiv.innerHTML = '<p style="color: #38a169;">✅ URL appears to be legitimate</p>';
+            } else {
+                resultDiv.innerHTML = '<div style="color: #e53e3e;"><strong>Potential Issues:</strong><br>' + warnings.join('<br>') + '</div>';
+            }
+        }
+        
+        function selectPsychology(element, isCorrect) {
+            // Remove previous selections
+            document.querySelectorAll('#psychologyTest .quiz-option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Mark selection
+            if (isCorrect) {
+                element.classList.add('correct');
+                document.getElementById('psychologyResult').innerHTML = '<div style="color: #38a169; font-weight: bold;">✅ Correct! This uses authority (fake CEO) and urgency (immediate action required).</div>';
+            } else {
+                element.classList.add('incorrect');
+                document.getElementById('psychologyResult').innerHTML = '<div style="color: #e53e3e; font-weight: bold;">❌ Incorrect. This primarily uses authority and urgency tactics.</div>';
+            }
+        }
+        
+        function startSecurityCheck() {
+            const checkDiv = document.getElementById('securityCheck');
+            checkDiv.innerHTML = `
+                <div style="text-align: left;">
+                    <h4>Security Assessment Checklist:</h4>
+                    <div class="checklist">
+                        <div class="checklist-item" onclick="toggleCheck(this)">
+                            <div class="checkbox"></div>
+                            <span>I use unique passwords for each account</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(this)">
+                            <div class="checkbox"></div>
+                            <span>I have two-factor authentication enabled</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(this)">
+                            <div class="checkbox"></div>
+                            <span>I regularly update my software</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(this)">
+                            <div class="checkbox"></div>
+                            <span>I verify sender identity before clicking links</span>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(this)">
+                            <div class="checkbox"></div>
+                            <span>I use a reputable antivirus program</span>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="calculateSecurityScore()" style="margin-top: 15px;">Calculate My Security Score</button>
+                    <div id="securityScore"></div>
+                </div>
+            `;
+        }
+        
+        function calculateSecurityScore() {
+            const checkedItems = document.querySelectorAll('#securityCheck .checkbox.checked').length;
+            const totalItems = document.querySelectorAll('#securityCheck .checkbox').length;
+            const percentage = (checkedItems / totalItems) * 100;
+            
+            let message = '';
+            let color = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! You have strong security practices.';
+                color = '#38a169';
+            } else if (percentage >= 60) {
+                message = 'Good, but there\'s room for improvement.';
+                color = '#d69e2e';
+            } else {
+                message = 'Your security needs significant improvement.';
+                color = '#e53e3e';
+            }
+            
+            document.getElementById('securityScore').innerHTML = `
+                <div style="margin-top: 15px; padding: 15px; background: #f7fafc; border-radius: 8px;">
+                    <strong>Your Security Score: ${percentage}%</strong><br>
+                    <span style="color: ${color};">${message}</span>
+                </div>
+            `;
+        }
+        
+        function showPhishingTest() {
+            const testDiv = document.getElementById('phishingTest');
+            testDiv.innerHTML = `
+                <div style="text-align: left;">
+                    <div class="phishing-example">
+                        <strong>Analyze this email:</strong><br><br>
+                        From: noreply@amazon.com<br>
+                        Subject: Your order has been shipped<br><br>
+                        Dear Customer,<br><br>
+                        Your recent order for iPhone 15 Pro has been shipped. If you did not place this order, please click the link below to cancel it immediately.<br><br>
+                        Cancel Order: http://amazon-orders.net/cancel<br><br>
+                        Amazon Customer Service
+                    </div>
+                    <h4>What's suspicious about this email?</h4>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="selectPhishingAnswer(this, false)">The sender email looks legitimate</div>
+                        <div class="quiz-option" onclick="selectPhishingAnswer(this, true)">The URL doesn't match Amazon's official domain</div>
+                        <div class="quiz-option" onclick="selectPhishingAnswer(this, false)">The email has good grammar</div>
+                    </div>
+                    <div id="phishingTestResult"></div>
+                </div>
+            `;
+        }
+        
+        function selectPhishingAnswer(element, isCorrect) {
+            document.querySelectorAll('#phishingTest .quiz-option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                document.getElementById('phishingTestResult').innerHTML = '<div style="color: #38a169; font-weight: bold; margin-top: 10px;">✅ Correct! The URL "amazon-orders.net" is not Amazon\'s official domain. Amazon uses amazon.com for official communications.</div>';
+            } else {
+                element.classList.add('incorrect');
+                document.getElementById('phishingTestResult').innerHTML = '<div style="color: #e53e3e; font-weight: bold; margin-top: 10px;">❌ Incorrect. The main red flag is the suspicious URL that doesn\'t match Amazon\'s official domain.</div>';
+            }
+        }
+        
+        function selectAnswer(element, isCorrect, explanation, qIdx) {
+            // Find the parent quiz container
+            const quizContainer = element.closest('.quiz-container');
+            const options = quizContainer.querySelectorAll('.quiz-option');
+            const resultDiv = quizContainer.querySelector('.quiz-result');
+            
+            // Remove previous selections
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.dataset.counted = 'false';
+            });
+            
+            // Mark selection
+            if (isCorrect) {
+                element.classList.add('correct');
+                resultDiv.innerHTML = '<div style="color: #38a169; background: #c6f6d5; padding: 10px; border-radius: 5px;">✅ Correct!<br>' + explanation + '</div>';
+                userAnswers[qIdx] = true;
+            } else {
+                element.classList.add('incorrect');
+                resultDiv.innerHTML = '<div style="color: #e53e3e; background: #fed7d7; padding: 10px; border-radius: 5px;">❌ Incorrect. Try again!<br>' + explanation + '</div>';
+                userAnswers[qIdx] = false;
+            }
+            
+            // Animate feedback
+            resultDiv.classList.remove('show');
+            setTimeout(() => { resultDiv.classList.add('show'); }, 10);
+            
+            // Save quiz progress
+            saveQuizProgress();
+            // Update final score
+            updateQuizScore();
+        }
+        
+        function clearAnswer(qIdx) {
+            userAnswers[qIdx] = null;
+            var quizContainer = document.querySelectorAll('.quiz-container')[qIdx];
+            quizContainer.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.dataset.counted = 'false';
+            });
+            quizContainer.querySelector('.quiz-result').innerHTML = '';
+            document.getElementById('submitQuizBtn').style.display = userAnswers.every(ans => ans !== null) ? 'inline-block' : 'none';
+            saveQuizProgress();
+        }
+        
+        function saveQuizProgress() {
+            let quizStates = [];
+            document.querySelectorAll('.quiz-container').forEach((container, idx) => {
+                let selected = null;
+                container.querySelectorAll('.quiz-option').forEach((opt, i) => {
+                    if (opt.classList.contains('correct') || opt.classList.contains('incorrect')) {
+                        selected = i;
+                    }
+                });
+                quizStates.push(selected);
+            });
+            localStorage.setItem('phishing_quiz', JSON.stringify({score, quizStates}));
+        }
+        function loadQuizProgress() {
+            const data = localStorage.getItem('phishing_quiz');
+            if (!data) return;
+            const {score: savedScore, quizStates} = JSON.parse(data);
+            score = savedScore || 0;
+            document.querySelectorAll('.quiz-container').forEach((container, idx) => {
+                if (quizStates && quizStates[idx] !== null) {
+                    const options = container.querySelectorAll('.quiz-option');
+                    options[quizStates[idx]].click();
+                }
+            });
+            updateQuizScore();
+        }
+        
+        function updateQuizScore() {
+            document.getElementById('finalScore').textContent = score;
+            
+            let feedback = '';
+            if (score === 5) {
+                feedback = '🎉 Perfect! You have excellent phishing awareness.';
+            } else if (score >= 3) {
+                feedback = '👍 Good job! Review the areas you missed.';
+            } else {
+                feedback = '📚 Keep studying! Practice makes perfect.';
+            }
+            
+            document.getElementById('quizFeedback').innerHTML = `<p style="font-weight: bold; color: #4a5568;">${feedback}</p>`;
+        }
+        
+        function resetQuiz() {
+            score = 0;
+            questionsAnswered = 0;
+            userAnswers = [null, null, null, null, null];
+            
+            // Reset all quiz options
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.dataset.counted = 'false';
+            });
+            
+            // Clear all results
+            document.querySelectorAll('.quiz-result').forEach(result => {
+                result.innerHTML = '';
+            });
+            
+            // Reset final score
+            document.getElementById('finalScore').textContent = '0';
+            document.getElementById('quizFeedback').innerHTML = '';
+            document.getElementById('quizResultsSection').style.display = 'none';
+            document.getElementById('submitQuizBtn').style.display = 'none';
+        }
+        
+        function submitQuiz() {
+            // Calculate score
+            score = userAnswers.filter(ans => ans === true).length;
+            document.getElementById('finalScore').textContent = score;
+            let feedback = '';
+            if (score === 5) {
+                feedback = '🎉 Perfect! You have excellent phishing awareness.';
+            } else if (score >= 3) {
+                feedback = '👍 Good job! Review the areas you missed.';
+            } else {
+                feedback = '📚 Keep studying! Practice makes perfect.';
+            }
+            document.getElementById('quizFeedback').innerHTML = `<p style="font-weight: bold; color: #4a5568;">${feedback}</p>`;
+            document.getElementById('quizResultsSection').style.display = 'block';
+            document.getElementById('submitQuizBtn').style.display = 'none';
+        }
+        
+        // Theme toggle logic
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('phishing_theme', theme);
+            document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+        }
+        function toggleTheme() {
+            const current = document.body.getAttribute('data-theme') || 'light';
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        }
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        // On load, set theme from localStorage or system preference
+        (function() {
+            const saved = localStorage.getItem('phishing_theme');
+            if (saved) {
+                setTheme(saved);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        })();
+        
+        // Initialize progress bar
+        updateProgress('intro');
+        
+        // Add some interactivity on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            document.querySelectorAll('.stat-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 20px rgba(0,0,0,0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                });
+            });
+            
+            // Add typing effect to URL input
+            document.getElementById('urlInput').addEventListener('input', function() {
+                if (this.value.length > 0) {
+                    this.style.borderColor = '#667eea';
+                } else {
+                    this.style.borderColor = '#ccc';
+                }
+            });
+
+            loadChecklistProgress();
+            loadQuizProgress();
+            loadSectionProgress();
+        });
+    </script>
+</body>
+</html>
